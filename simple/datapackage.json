@@ -61,7 +61,7 @@
           {
             "name": "url",
             "type": "string",
-            "format": "url",
+            "format": "uri",
             "description": "The URL (website address) of the organization.",
             "constraints": {
               "required": false
@@ -86,7 +86,7 @@
           {
             "name": "year_incorporated",
             "type": "date",
-            "format": "%Y",
+            "pattern": "%Y",
             "description": "The year in which the organization was legally formed.",
             "constraints": {
               "required": false
@@ -101,7 +101,9 @@
             }
           }
         ],
-        "primaryKey": "id"
+        "primaryKey": [
+          "id"
+        ]
       }
     },
     {
@@ -165,7 +167,7 @@
             "name": "url",
             "description": "URL of the service",
             "type": "string",
-            "format": "url",
+            "format": "uri",
             "constraints": {
               "required": false
             }
@@ -240,23 +242,21 @@
             "constraints": {
               "required": false
             }
-          },
-          {
-            "name": "taxonomy_ids",
-            "description": "(Deprecated) A comma separated list of identifiers from the taxonomy table. This field is deprecated in favour of using the service_taxonomy table.",
-            "type": "string",
-            "constraints": {
-              "required": false
-            }
           }
         ],
-        "primaryKey": "id",
+        "primaryKey": [
+          "id"
+        ],
         "foreignKeys": [
           {
-            "fields": "organization_id",
+            "fields": [
+              "organization_id"
+            ],
             "reference": {
               "resource": "organization",
-              "fields": "id"
+              "fields": [
+                "id"
+              ]
             }
           }
         ]
@@ -301,20 +301,30 @@
             "type": "string"
           }
         ],
-        "primaryKey": "id",
+        "primaryKey": [
+          "id"
+        ],
         "foreignKeys": [
           {
-            "fields": "service_id",
+            "fields": [
+              "service_id"
+            ],
             "reference": {
               "resource": "service",
-              "fields": "id"
+              "fields": [
+                "id"
+              ]
             }
           },
           {
-            "fields": "location_id",
+            "fields": [
+              "location_id"
+            ],
             "reference": {
               "resource": "location",
-              "fields": "id"
+              "fields": [
+                "id"
+              ]
             }
           }
         ]
@@ -333,7 +343,8 @@
             "description": "Each location must have a unique identifier",
             "type": "string",
             "constraints": {
-              "required": true
+              "required": true,
+              "unique": true
             }
           },
           {
@@ -352,14 +363,6 @@
             "type": "string"
           },
           {
-            "name": "description",
-            "description": "A description of this location.",
-            "type": "string",
-            "constraints": {
-              "required": false
-            }
-          },
-          {
             "name": "transportation",
             "description": "A description of the access to public or private transportation to and from the location.",
             "type": "string"
@@ -373,15 +376,29 @@
             "name": "longitude",
             "description": "X coordinate of location expressed in decimal degrees in WGS84 datum.",
             "type": "number"
+          },
+          {
+            "name": "description",
+            "description": "A description of this location.",
+            "type": "string",
+            "constraints": {
+              "required": false
+            }
           }
         ],
-        "primaryKey": "id",
+        "primaryKey": [
+          "id"
+        ],
         "foreignKeys": [
           {
-            "fields": "organization_id",
+            "fields": [
+              "organization_id"
+            ],
             "reference": {
               "resource": "organization",
-              "fields": "id"
+              "fields": [
+                "id"
+              ]
             }
           }
         ]
@@ -400,7 +417,8 @@
             "description": "Each entry must have a unique identifier",
             "type": "string",
             "constraints": {
-              "required": true
+              "required": true,
+              "unique": true
             }
           },
           {
@@ -466,48 +484,65 @@
             "name": "description",
             "description": "A description providing extra information about the phone service (e.g. any special arrangements for accessing, or details of availability at particular times.",
             "type": "string"
-          },
-          {
-            "name": "department",
-            "description": "(Deprecated) The department for which this is the phone number. This field is deprecated and will be removed in a future version of HSDS.",
-            "type": "string"
           }
         ],
-        "primaryKey": "id",
+        "primaryKey": [
+          "id"
+        ],
         "foreignKeys": [
           {
-            "fields": "organization_id",
+            "fields": [
+              "organization_id"
+            ],
             "reference": {
               "resource": "organization",
-              "fields": "id"
+              "fields": [
+                "id"
+              ]
             }
           },
           {
-            "fields": "location_id",
+            "fields": [
+              "location_id"
+            ],
             "reference": {
               "resource": "location",
-              "fields": "id"
+              "fields": [
+                "id"
+              ]
             }
           },
           {
-            "fields": "service_id",
+            "fields": [
+              "service_id"
+            ],
             "reference": {
               "resource": "service",
-              "fields": "id"
+              "fields": [
+                "id"
+              ]
             }
           },
           {
-            "fields": "contact_id",
+            "fields": [
+              "contact_id"
+            ],
             "reference": {
               "resource": "contact",
-              "fields": "id"
+              "fields": [
+                "id"
+              ]
             }
           },
           {
-            "fields": "service_at_location_id",
+            "fields": [
+              "service_at_location_id"
+            ],
             "reference": {
               "resource": "service_at_location",
-              "fields": "id"
+              "fields": [
+                "id"
+              ]
             }
           }
         ]
